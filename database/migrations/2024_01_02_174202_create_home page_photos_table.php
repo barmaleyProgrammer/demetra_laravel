@@ -1,5 +1,5 @@
 <?php
-use App\Models\PhotoHomePage;
+use App\Models\HomePagePhoto;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

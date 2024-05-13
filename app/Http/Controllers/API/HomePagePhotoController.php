@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\PhotoHomePage;
+use App\Models\HomePagePhoto;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 
-class PhotoHomePageController extends Controller
+class HomePagePhotoController extends Controller
 {
     public function __construct()
     {
@@ -17,15 +17,15 @@ class PhotoHomePageController extends Controller
 
     public function index(Request $request): Collection
     {
-        $photohomepage = PhotoHomePage::orderBy('position', 'desc');
+        $homepagephotos = HomePagePhoto::orderBy('position', 'desc');
         if ($request->fields) {
             $fields = explode(',', $request->fields);
-            $photohomepage->select($fields);
+            $homepagephotos->select($fields);
         }
         if (!$request->inActive) {
-            $photohomepage->where('is_active', true);
+            $homepagephotos->where('is_active', true);
         }
-        return $photohomepage->get();
+        return $homepagephotos->get();
     }
 
 //    public function create(Request $request): TopBanner
@@ -40,9 +40,9 @@ class PhotoHomePageController extends Controller
 //        return TopBanner::create($request->all());
 //    }
 
-    public function show(PhotohomepageController $photohomepage): PhotohomepageController
+    public function show(HomePagePhoto $homepagephoto): HomePagePhoto
     {
-        return $photohomepage;
+        return $homepagephoto;
     }
 
 //    public function update(Request $request, TopBanner $topbanner): TopBanner

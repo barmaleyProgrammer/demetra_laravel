@@ -10,7 +10,7 @@ use App\Http\Controllers\API\AuthController;
 //use App\Http\Controllers\API\IndicatorController;
 //use App\Http\Controllers\API\NeuronNetworkController;
 use App\Http\Controllers\API\NewoneController;
-use App\Http\Controllers\API\PhotoHomePageController;
+use App\Http\Controllers\API\HomePagePhotoController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -69,11 +69,11 @@ Route::group([
 
 Route::group([
     'middleware' => 'api',
-    'prefix' => 'photohomepage',
-    'controller' => PhotoHomePageController::class
+    'prefix' => 'homepagephotos',
+    'controller' => HomePagePhotoController::class
 ], function ($router) {
     Route::get('', 'index');
-//    Route::get('/{photohomepage}', 'show');
+    Route::get('/{homepagephoto}', 'show');
 //    Route::post('', 'create');
 //    Route::put('/{photohomepage}', 'update');
 //    Route::delete('/{photohomepage}', 'destroy');

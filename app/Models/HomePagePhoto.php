@@ -6,10 +6,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class PhotoHomePage extends Model
+class HomePagePhoto extends Model
 {
     use HasFactory;
-
+    protected $table = 'home_page_photos';
     protected $fillable = [
         'position',
         'image',
