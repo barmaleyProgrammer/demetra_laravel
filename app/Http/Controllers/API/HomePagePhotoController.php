@@ -58,18 +58,18 @@ class HomePagePhotoController extends Controller
 //        return $topbanner;
 //    }
 
-//    public function destroy(TopBanner $topbanner): JsonResponse
-//    {
-//        $topbanner->delete();
-//
-//        $topBanners = TopBanner::orderBy('position', 'asc')->get();
-//        foreach ($topBanners as $k => $topBanner) {
-//            $topBanner->position = $k + 1;
-//            $topBanner->save();
-//        }
-//
-//        return response()->json(['message' => 'TopBanner deleted successfully']);
-//    }
+    public function destroy(HomePagePhoto $homepagephoto): JsonResponse
+    {
+        $homepagephoto->delete();
+
+        $homepagephotos = HomePagePhoto::orderBy('position', 'asc')->get();
+        foreach ($homepagephotos as $k => $homepagephoto) {
+            $homepagephoto->position = $k + 1;
+            $homepagephoto->save();
+        }
+
+        return response()->json(['message' => 'TopBanner deleted successfully']);
+    }
 
 //    public function position(TopBanner $topbanner, string $action): JsonResponse
 //    {
@@ -95,11 +95,11 @@ class HomePagePhotoController extends Controller
 //        return response()->json(['message' => 'TopBanner position Updated']);
 //    }
 
-//    public function setActive(TopBanner $topbanner, $is_active): JsonResponse
-//    {
-//        $topbanner->is_active = filter_var($is_active, FILTER_VALIDATE_BOOLEAN);
-//        $topbanner->save();
-//
-//        return response()->json([]);
-//    }
+    public function setActive(HomePagePhoto $homepagephoto, $is_active): JsonResponse
+    {
+        $homepagephoto->is_active = filter_var($is_active, FILTER_VALIDATE_BOOLEAN);
+        $homepagephoto->save();
+
+        return response()->json([]);
+    }
 }

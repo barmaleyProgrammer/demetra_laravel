@@ -76,10 +76,10 @@ Route::group([
     Route::get('/{homepagephoto}', 'show');
 //    Route::post('', 'create');
 //    Route::put('/{photohomepage}', 'update');
-//    Route::delete('/{photohomepage}', 'destroy');
+    Route::delete('/{homepagephoto}', 'destroy');
 //    Route::get('/{photohomepage}/restore', 'restore');
 //    Route::get('/{photohomepage}/position/{action}', 'position');
-//    Route::get('/{photohomepage}/active/{is_active}', 'setActive');
+    Route::get('/{homepagephoto}/active/{is_active}', 'setActive');
 });
 Route::group([
     'middleware' => 'api',
