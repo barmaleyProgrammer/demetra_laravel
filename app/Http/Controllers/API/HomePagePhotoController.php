@@ -28,35 +28,34 @@ class HomePagePhotoController extends Controller
         return $homepagephotos->get();
     }
 
-//    public function create(Request $request): TopBanner
-//    {
-//        $request->validate([
-//            'title' => 'required',
-//            'image' => 'required',
-//        ]);
-//
-//        $request['position'] = TopBanner::count() + 1;
-//
-//        return TopBanner::create($request->all());
-//    }
+    public function create(Request $request): HomePagePhoto
+    {
+        $request->validate([
+            'image' => 'required',
+        ]);
+
+        $request['position'] = HomePagePhoto::count() + 1;
+
+        return HomePagePhoto::create($request->all());
+    }
 
     public function show(HomePagePhoto $homepagephoto): HomePagePhoto
     {
         return $homepagephoto;
     }
 
-//    public function update(Request $request, TopBanner $topbanner): TopBanner
-//    {
-//        $request->validate([
+    public function update(Request $request, HomePagePhoto $homepagephoto): HomePagePhoto
+    {
+        $request->validate([
 //            'id' => 'required',
 //            'title' => 'required',
 //            'position' => 'required',
-//        ]);
-//
-//        $topbanner->update($request->all());
-//
-//        return $topbanner;
-//    }
+        ]);
+
+        $homepagephoto->update($request->all());
+
+        return $homepagephoto;
+    }
 
     public function destroy(HomePagePhoto $homepagephoto): JsonResponse
     {

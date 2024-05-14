@@ -74,8 +74,8 @@ Route::group([
 ], function ($router) {
     Route::get('', 'index');
     Route::get('/{homepagephoto}', 'show');
-//    Route::post('', 'create');
-//    Route::put('/{photohomepage}', 'update');
+    Route::post('', 'create');
+    Route::put('/{homepagephoto}', 'update');
     Route::delete('/{homepagephoto}', 'destroy');
 //    Route::get('/{photohomepage}/restore', 'restore');
 //    Route::get('/{photohomepage}/position/{action}', 'position');
