@@ -78,7 +78,7 @@ Route::group([
     Route::put('/{homepagephoto}', 'update');
     Route::delete('/{homepagephoto}', 'destroy');
 //    Route::get('/{photohomepage}/restore', 'restore');
-//    Route::get('/{photohomepage}/position/{action}', 'position');
+    Route::get('/{homepagephoto}/position/{action}', 'position');
     Route::get('/{homepagephoto}/active/{is_active}', 'setActive');
 });
 Route::group([

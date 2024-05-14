@@ -70,29 +70,29 @@ class HomePagePhotoController extends Controller
         return response()->json(['message' => 'TopBanner deleted successfully']);
     }
 
-//    public function position(TopBanner $topbanner, string $action): JsonResponse
-//    {
-//        $currentPosition = $topbanner->position;
-//        $count = TopBanner::count();
-//
-//        if ($action === 'up' && $currentPosition < $count) {
-//            $above = TopBanner::where('position', ($currentPosition + 1))->first();
-//            $above->position = $currentPosition;
-//            $above->save();
-//            $topbanner->position = ($currentPosition + 1);
-//            $topbanner->save();
-//        }
-//
-//        if ($action === 'down' && $currentPosition > 0) {
-//            $below = TopBanner::where('position', ($currentPosition - 1))->first();
-//            $below->position = $currentPosition;
-//            $below->save();
-//            $topbanner->position = ($currentPosition - 1);
-//            $topbanner->save();
-//        }
-//
-//        return response()->json(['message' => 'TopBanner position Updated']);
-//    }
+    public function position(HomePagePhoto $homepagephoto, string $action): JsonResponse
+    {
+        $currentPosition = $homepagephoto->position;
+        $count = HomePagePhoto::count();
+
+        if ($action === 'up' && $currentPosition < $count) {
+            $above = HomePagePhoto::where('position', ($currentPosition + 1))->first();
+            $above->position = $currentPosition;
+            $above->save();
+            $homepagephoto->position = ($currentPosition + 1);
+            $homepagephoto->save();
+        }
+
+        if ($action === 'down' && $currentPosition > 0) {
+            $below = HomePagePhoto::where('position', ($currentPosition - 1))->first();
+            $below->position = $currentPosition;
+            $below->save();
+            $homepagephoto->position = ($currentPosition - 1);
+            $homepagephoto->save();
+        }
+
+        return response()->json(['message' => 'TopBanner position Updated']);
+    }
 
     public function setActive(HomePagePhoto $homepagephoto, $is_active): JsonResponse
     {
