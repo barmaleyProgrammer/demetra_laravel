@@ -6,7 +6,7 @@
 use App\Http\Controllers\API\AuthController;
 //use App\Http\Controllers\API\BannerController;
 //use App\Http\Controllers\API\ContactController;
-//use App\Http\Controllers\API\FaqController;
+use App\Http\Controllers\API\RoomController;
 //use App\Http\Controllers\API\IndicatorController;
 //use App\Http\Controllers\API\NeuronNetworkController;
 use App\Http\Controllers\API\NewoneController;
@@ -124,19 +124,19 @@ Route::group([
 
 Route::group([
     'middleware' => 'api',
-    'prefix' => 'faq',
-    'controller' => FaqController::class
+    'prefix' => 'room',
+    'controller' => RoomController::class
 ], function ($router) {
     Route::get('', 'index');
-    Route::get('/category/{category}', 'showCategory');
-    Route::post('/category', 'createCategory');
-    Route::put('/category/{category}', 'updateCategory');
-    Route::delete('/category/{category}', 'destroyCategory');
+    Route::get('{room}', 'show');
+    Route::post('', 'create');
+    Route::put('{room}', 'update');
+    Route::delete('{room}', 'destroy');
 
-    Route::get('/{faq}', 'showFaq');
-    Route::post('/', 'createFaq');
-    Route::put('/{faq}', 'updateFaq');
-    Route::delete('/{faq}', 'destroyFaq');
+    Route::get('{room}/photo', 'showPhoto');
+    Route::post('{room}/photo', 'createPhoto');
+    Route::put('{room}/photo/{roomPhoto}', 'updatePhoto');
+    Route::delete('{room}/photo/{roomPhoto}', 'destroyPhoto');
 });
 
 Route::group([
