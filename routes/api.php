@@ -7,6 +7,7 @@ use App\Http\Controllers\API\AuthController;
 //use App\Http\Controllers\API\BannerController;
 //use App\Http\Controllers\API\ContactController;
 use App\Http\Controllers\API\RoomController;
+use App\Http\Controllers\API\GalleryPhotoController;
 //use App\Http\Controllers\API\IndicatorController;
 //use App\Http\Controllers\API\NeuronNetworkController;
 use App\Http\Controllers\API\NewoneController;
@@ -94,6 +95,7 @@ Route::group([
     Route::get('/{newone}/active/{is_active}', 'setActive');
 });
 
+
 Route::group([
     'middleware' => 'api',
     'prefix' => 'agreement',
@@ -134,6 +136,23 @@ Route::group([
     Route::delete('{room}', 'destroy');
 
     Route::get('{room}/photo', 'showPhoto');
+    Route::post('{room}/photo', 'createPhoto');
+    Route::put('{room}/photo/{roomPhoto}', 'updatePhoto');
+    Route::delete('{room}/photo/{roomPhoto}', 'destroyPhoto');
+});
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'place',
+    'controller' => GalleryPhotoController::class
+], function ($router) {
+    Route::get('', 'index');
+    Route::get('{place}', 'show');
+    Route::post('', 'createPlace');
+    Route::put('place/{place}/is_main', 'update');
+    Route::delete('{place}', 'destroy');
+
+    Route::get('{place}/photo', 'showPhoto');
     Route::post('{room}/photo', 'createPhoto');
     Route::put('{room}/photo/{roomPhoto}', 'updatePhoto');
     Route::delete('{room}/photo/{roomPhoto}', 'destroyPhoto');
