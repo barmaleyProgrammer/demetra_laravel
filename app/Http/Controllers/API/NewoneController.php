@@ -29,16 +29,16 @@ class NewoneController extends Controller
         return $news->get();
     }
 
-//    public function create(Request $request): Newone
-//    {
-//        $request->validate([
-//            'title' => 'required',
-//            'body' => 'required',
-//            'publish_date' => 'required'
-//        ]);
-//
-//        return Newone::create($request->all());
-//    }
+    public function create(Request $request): Newone
+    {
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'publish_date' => 'required'
+        ]);
+
+        return Newone::create($request->all());
+    }
 
     public function show(Newone $newone): Newone
     {

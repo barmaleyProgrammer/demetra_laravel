@@ -94,34 +94,39 @@ class GalleryPhotoController extends Controller
     }
 //
 //
-    public function createPhoto(Request $request, Room $room): RoomPhoto
+    public function createPhoto(Request $request, Place $place): PlacePhoto
     {
         $request->validate([
-            'room_id' => 'required',
+            'gallery_place_id' => 'required',
             'image' => 'required',
         ]);
 
-        return RoomPhoto::create($request->all());
+        return PlacePhoto::create([
+            'gallery_place_id' => $place->id,
+            'image' => $request->input('image'),
+            'is_main' => false,
+        ]);
     }
 //
-//    public function updatePhoto(Request $request, Room $room, RoomPhoto $roomPhoto): RoomPhoto
-//    {
-//        $request->validate([
-//            'room_id' => 'required',
-//            'image' => 'required',
-//            'id' => 'required',
-//        ]);
-//
-//        $roomPhoto->update($request->all());
-//
-//        return $roomPhoto;
-//    }
-//
-//    public function destroyPhoto(Room $room, RoomPhoto $roomPhoto): JsonResponse
-//    {
-//        $roomPhoto->delete();
-//
-//        return response()->json(['message' => 'Photo deleted successfully']);
-//    }
+    public function updatePhoto(Request $request, Place $place, PlacePhoto $placePhoto): PlacePhoto
+    {
+        $request->validate([
+            'image' => 'required',
+        ]);
+
+        $placePhoto->update([
+            'gallery_place_id' => $place->id,
+            'image' => $request->input('image'),
+        ]);
+
+        return $placePhoto;
+    }
+
+    public function destroyPhoto(Place $place, PlacePhoto $placePhoto): JsonResponse
+    {
+        $placePhoto->delete();
+
+        return response()->json(['message' => 'Photo deleted successfully']);
+    }
 
 }

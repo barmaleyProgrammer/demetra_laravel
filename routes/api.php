@@ -131,7 +131,7 @@ Route::group([
     Route::delete('{place}', 'destroy');
 
     Route::get('{place}/photo', 'showPhoto');
-    Route::post('{room}/photo', 'createPhoto');
-    Route::put('{room}/photo/{roomPhoto}', 'updatePhoto');
-    Route::delete('{room}/photo/{roomPhoto}', 'destroyPhoto');
+    Route::post('{place}/photo', 'createPhoto');
+    Route::put('{place}/photo/{placePhoto}', 'updatePhoto');
+    Route::delete('{place}/photo/{placePhoto}', 'destroyPhoto');
 });
