@@ -57,19 +57,6 @@ Route::group([
 
 Route::group([
     'middleware' => 'api',
-    'prefix' => 'banners',
-    'controller' => BannerController::class
-], function ($router) {
-    Route::get('', 'index');
-    Route::get('/{banner}', 'show')->withTrashed();
-    Route::post('', 'create');
-    Route::put('/{banner}', 'update')->withTrashed();
-    Route::delete('/{banner}', 'destroy');
-    Route::get('/{banner}/restore', 'restore')->withTrashed();
-});
-
-Route::group([
-    'middleware' => 'api',
     'prefix' => 'homepagephotos',
     'controller' => HomePagePhotoController::class
 ], function ($router) {
@@ -93,16 +80,6 @@ Route::group([
     Route::put('/{newone}', 'update');
     Route::delete('/{newone}', 'destroy');
     Route::get('/{newone}/active/{is_active}', 'setActive');
-});
-
-
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'agreement',
-    'controller' => AgreementController::class
-], function ($router) {
-    Route::get('/{agreement}', 'show');
-    Route::put('/{agreement}', 'update');
 });
 
 Route::group([
@@ -148,46 +125,13 @@ Route::group([
 ], function ($router) {
     Route::get('', 'index');
     Route::get('{place}', 'show');
+    Route::put('{place}', 'update');
     Route::post('', 'createPlace');
-    Route::put('place/{place}/is_main', 'update');
+//    Route::put('{place}/photo/{placePhoto}/is_main', 'update');
     Route::delete('{place}', 'destroy');
 
     Route::get('{place}/photo', 'showPhoto');
     Route::post('{room}/photo', 'createPhoto');
     Route::put('{room}/photo/{roomPhoto}', 'updatePhoto');
     Route::delete('{room}/photo/{roomPhoto}', 'destroyPhoto');
-});
-
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'advantages',
-    'controller' => AdvantageController::class
-], function ($router) {
-    Route::get('', 'index');
-    Route::post('', 'create');
-    Route::put('/{advantage}', 'update');
-    Route::delete('/{advantage}', 'destroy');
-    Route::get('/{advantage}/active/{is_active}', 'setActive');
-});
-
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'neuron',
-    'controller' => NeuronNetworkController::class
-], function ($router) {
-    Route::get('{neuron}', 'index');
-//    Route::get('/{neuron}', 'show');
-    Route::post('', 'create');
-    Route::put('/{neuron}', 'update');
-});
-
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'indicator',
-    'controller' => IndicatorController::class
-], function ($router) {
-    Route::get('', 'index');
-    Route::get('/{indicator}', 'show');
-    Route::put('/{indicator}', 'update');
-    Route::get('/{indicator}/active/{is_active}', 'setActive');
 });

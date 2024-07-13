@@ -69,21 +69,40 @@ class GalleryPhotoController extends Controller
         return $place;
     }
 
+    public function update(Request $request, Place $place): Place
+    {
+        $request->validate([
+            'id' => ['numeric', 'required'],
+            'name' => ['string', 'required'],
+            'photo.id' => ['numeric', 'required'],
+            'photo.is_main' => ['bool', 'required'],
+            'photo.image' => ['string', 'required'],
+        ]);
+        $place->name = $request->name;
+        $place->save();
+        $placePhoto = PlacePhoto::find($request->photo['id']);
+        $placePhoto->is_main = $request->photo['is_main'];
+        $placePhoto->image = $request->photo['image'];
+        $placePhoto->save();
+
+        return $place;
+    }
+
     public function showPhoto(Place $place): array
     {
         return PlacePhoto::where('gallery_place_id', $place->id)->get()->toArray();
     }
 //
 //
-//    public function createPhoto(Room $room, Request $request): RoomPhoto
-//    {
-//        $request->validate([
-//            'room_id' => 'required',
-//            'image' => 'required',
-//        ]);
-//
-//        return RoomPhoto::create($request->all());
-//    }
+    public function createPhoto(Request $request, Room $room): RoomPhoto
+    {
+        $request->validate([
+            'room_id' => 'required',
+            'image' => 'required',
+        ]);
+
+        return RoomPhoto::create($request->all());
+    }
 //
 //    public function updatePhoto(Request $request, Room $room, RoomPhoto $roomPhoto): RoomPhoto
 //    {
