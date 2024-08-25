@@ -22,7 +22,6 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 Route::get('/auth/whoami', [AuthController::class, 'whoami'])->middleware('auth:sanctum');
 Route::post('/auth/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-
 //Route::group([
 //    'middleware' => 'api',
 //    'prefix' => 'auth',
@@ -54,12 +53,12 @@ Route::group([
 ], function ($router) {
     Route::get('', 'index');
     Route::get('/{homepagephoto}', 'show');
-    Route::post('', 'create');
-    Route::put('/{homepagephoto}', 'update');
-    Route::delete('/{homepagephoto}', 'destroy');
+    Route::post('', 'create')->middleware('auth:sanctum');
+    Route::put('/{homepagephoto}', 'update')->middleware('auth:sanctum');
+    Route::delete('/{homepagephoto}', 'destroy')->middleware('auth:sanctum');
 //    Route::get('/{photohomepage}/restore', 'restore');
-    Route::get('/{homepagephoto}/position/{action}', 'position');
-    Route::get('/{homepagephoto}/active/{is_active}', 'setActive');
+    Route::get('/{homepagephoto}/position/{action}', 'position')->middleware('auth:sanctum');
+    Route::get('/{homepagephoto}/active/{is_active}', 'setActive')->middleware('auth:sanctum');
 });
 Route::group([
     'middleware' => 'api',
@@ -67,11 +66,12 @@ Route::group([
     'controller' => NewoneController::class
 ], function ($router) {
     Route::get('', 'index');
+//    Route::get('', 'index');
     Route::get('/{newone}', 'show');
-    Route::post('', 'create');
-    Route::put('/{newone}', 'update');
-    Route::delete('/{newone}', 'destroy');
-    Route::get('/{newone}/active/{is_active}', 'setActive');
+    Route::post('', 'create')->middleware('auth:sanctum');
+    Route::put('/{newone}', 'update')->middleware('auth:sanctum');
+    Route::delete('/{newone}', 'destroy')->middleware('auth:sanctum');
+    Route::get('/{newone}/active/{is_active}', 'setActive')->middleware('auth:sanctum');
 });
 
 Route::group([
@@ -80,7 +80,7 @@ Route::group([
     'controller' => AboutController::class
 ], function ($router) {
     Route::get('/{about}', 'show');
-    Route::put('/{about}', 'update');
+    Route::put('/{about}', 'update')->middleware('auth:sanctum');
 });
 
 Route::group([
@@ -89,7 +89,7 @@ Route::group([
     'controller' => ContactController::class
 ], function ($router) {
     Route::get('', 'index');
-    Route::put('', 'update');
+    Route::put('', 'update')->middleware('auth:sanctum');
 });
 
 
@@ -100,14 +100,14 @@ Route::group([
 ], function ($router) {
     Route::get('', 'index');
     Route::get('{room}', 'show');
-    Route::post('', 'create');
-    Route::put('{room}', 'update');
-    Route::delete('{room}', 'destroy');
+    Route::post('', 'create')->middleware('auth:sanctum');
+    Route::put('{room}', 'update')->middleware('auth:sanctum');
+    Route::delete('{room}', 'destroy')->middleware('auth:sanctum');
 
     Route::get('{room}/photo', 'showPhoto');
-    Route::post('{room}/photo', 'createPhoto');
-    Route::put('{room}/photo/{roomPhoto}', 'updatePhoto');
-    Route::delete('{room}/photo/{roomPhoto}', 'destroyPhoto');
+    Route::post('{room}/photo', 'createPhoto')->middleware('auth:sanctum');
+    Route::put('{room}/photo/{roomPhoto}', 'updatePhoto')->middleware('auth:sanctum');
+    Route::delete('{room}/photo/{roomPhoto}', 'destroyPhoto')->middleware('auth:sanctum');
 });
 
 Route::group([
@@ -117,13 +117,13 @@ Route::group([
 ], function ($router) {
     Route::get('', 'index');
     Route::get('{place}', 'show');
-    Route::put('{place}', 'update');
+    Route::put('{place}', 'update')->middleware('auth:sanctum');
     Route::post('', 'createPlace');
 //    Route::put('{place}/photo/{placePhoto}/is_main', 'update');
-    Route::delete('{place}', 'destroy');
+    Route::delete('{place}', 'destroy')->middleware('auth:sanctum');
 
     Route::get('{place}/photo', 'showPhoto');
-    Route::post('{place}/photo', 'createPhoto');
-    Route::put('{place}/photo/{placePhoto}', 'updatePhoto');
-    Route::delete('{place}/photo/{placePhoto}', 'destroyPhoto');
+    Route::post('{place}/photo', 'createPhoto')->middleware('auth:sanctum');
+    Route::put('{place}/photo/{placePhoto}', 'updatePhoto')->middleware('auth:sanctum');
+    Route::delete('{place}/photo/{placePhoto}', 'destroyPhoto')->middleware('auth:sanctum');
 });
