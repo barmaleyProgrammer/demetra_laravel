@@ -1,37 +1,22 @@
 <?php
 
-//use App\Http\Controllers\API\AboutController;
-//use App\Http\Controllers\API\AdvantageController;
-//use App\Http\Controllers\API\AgreementController;
-//use App\Http\Controllers\API\AuthController;
-//use App\Http\Controllers\API\BannerController;
-//use App\Http\Controllers\API\ContactController;
 use App\Http\Controllers\API\RoomController;
 use App\Http\Controllers\API\GalleryPhotoController;
-//use App\Http\Controllers\API\IndicatorController;
-//use App\Http\Controllers\API\NeuronNetworkController;
 use App\Http\Controllers\API\NewoneController;
 use App\Http\Controllers\API\HomePagePhotoController;
 use App\Http\Controllers\API\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 
-Route::post('/auth/login', [AuthController::class, 'login']);
-Route::get('/auth/whoami', [AuthController::class, 'whoami'])->middleware('auth:sanctum');
-Route::post('/auth/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
-
-//Route::group([
-//    'middleware' => 'api',
-//    'prefix' => 'auth',
-//    'controller' => AuthController::class
-//], function ($router) {
-//    Route::post('login', 'login');
-//    Route::get('logout', 'logout');
-//    Route::get('refresh', 'refresh');
-//    Route::get('whoami', 'whoami');
-//});
+Route::group(['middleware' => 'api'], function () {
+    Route::post('/auth/login', [AuthController::class, 'login']);
+    Route::post('/auth/logout', [AuthController::class, 'logout']);
+    Route::post('/auth/refresh', [AuthController::class, 'refresh']);
+    Route::middleware('auth:api')->group(function () {
+        Route::get('/auth/whoami', [AuthController::class, 'whoami']);
+    });
+});
 
 Route::group([
     'middleware' => 'api',
