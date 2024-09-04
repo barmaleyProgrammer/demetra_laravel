@@ -4,6 +4,7 @@ use App\Http\Controllers\API\RoomController;
 use App\Http\Controllers\API\GalleryPhotoController;
 use App\Http\Controllers\API\NewoneController;
 use App\Http\Controllers\API\HomePagePhotoController;
+use App\Http\Controllers\API\ServiceController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,16 @@ Route::group([
 
 Route::group([
     'middleware' => 'api',
+    'prefix' => 'service',
+    'controller' => ServiceController::class
+], function ($router) {
+    Route::get('', 'index');
+    Route::get('/{service}', 'show');
+    Route::put('/{service}', 'update')->middleware('auth:sanctum');
+});
+
+Route::group([
+    'middleware' => 'api',
     'prefix' => 'homepagephotos',
     'controller' => HomePagePhotoController::class
 ], function ($router) {
@@ -57,15 +68,6 @@ Route::group([
     Route::put('/{newone}', 'update')->middleware('auth:sanctum');
     Route::delete('/{newone}', 'destroy')->middleware('auth:sanctum');
     Route::get('/{newone}/active/{is_active}', 'setActive')->middleware('auth:sanctum');
-});
-
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'about',
-    'controller' => AboutController::class
-], function ($router) {
-    Route::get('/{about}', 'show');
-    Route::put('/{about}', 'update')->middleware('auth:sanctum');
 });
 
 Route::group([
